@@ -1,0 +1,160 @@
+[username]
+style_user = "purple"
+show_always = true
+format = '[$user](bold #5B26D8)'
+
+[hostname]
+ssh_only = false
+format = '[@](#7B51E0)[$hostname ](bold #A3D826)'
+disabled = false
+
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+style = "bold #5f5faf"
+disabled = false
+read_only = " 󰌾"
+
+[directory.substitutions]
+"Programming" = "   Programming"
+"Downloads" = "   Downloads"
+"Documents" = " 󰈙 Documents"
+"Backups" = " 󰑓 Backups"
+"Images" = "   Images"
+"Videos" = "   Videos"
+"Music" = " 󰝚  Music"
+"Tools" = "   Tools"
+
+[cmd_duration]
+disabled = true
+
+[line_break]
+disabled = true
+
+[git_branch]
+style = "bold #f05033"
+symbol = " "
+truncation_length = 10
+
+[git_status]
+style = "bold #f05033"
+ahead = ''
+behind = ''
+conflicted = '✖ '
+stashed = '⚑'
+untracked = '…'
+renamed = '→'
+deleted = '✘ '
+modified = '  '
+staged = '[+($count)](green)'
+
+[buf]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[crystal]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fennel]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = "󱘗 "
+
+[scala]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "
+
+[c]
+format = '[|  $name $version ]($style)'
+
+[python]
+symbol = " "
+#pyenv_version_name = true
+format = '[| ${symbol}python (${version} )(\($virtualenv\) )]($style)'
+style = "bold yellow"
+pyenv_prefix = "venv "
+python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+detect_extensions = ["py"]
+
+[nodejs]
+format = "[|  Node.js $version](bold green) "
+detect_files = ["package.json", ".node-version"]
+detect_folders = ["node_modules"]
+

@@ -1,0 +1,15 @@
+#!/bin/bash
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+nitrogen --restore &
+setxkbmap uk
+dunst &
+picom &
+redshift &
+slstatus &
+setxkbmap uk
+
+# If you have screen issues like me with my laptop
+#echo 5 > /sys/class/backlight/acpi_video0/brightness
+
+exec dwm 
+

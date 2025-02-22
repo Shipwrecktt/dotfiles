@@ -1,0 +1,110 @@
+# _______   __                                __                                         
+#|       \ |  \                              |  \                                        
+#| $$$$$$$\ \$$  ______    _______   ______  | $$  ______   __    __   ______    _______ 
+#| $$  | $$|  \ /      \  /       \ /      \ | $$ /      \ |  \  |  \ /      \  /       \
+#| $$  | $$| $$|  $$$$$$\|  $$$$$$$|  $$$$$$\| $$|  $$$$$$\| $$  | $$|  $$$$$$\|  $$$$$$$
+#| $$  | $$| $$| $$   \$$| $$      | $$  | $$| $$| $$  | $$| $$  | $$| $$   \$$ \$$    \ 
+#| $$__/ $$| $$| $$      | $$_____ | $$__/ $$| $$| $$__/ $$| $$__/ $$| $$       _\$$$$$$\
+#| $$    $$| $$| $$       \$$     \ \$$    $$| $$ \$$    $$ \$$    $$| $$      |       $$
+# \$$$$$$$  \$$ \$$        \$$$$$$$  \$$$$$$  \$$  \$$$$$$   \$$$$$$  \$$       \$$$$$$$
+
+#Redisributed by Shipwreckt
+#Email: shipwreckt@mailfence.com
+#website: shipwreckt.co.uk
+
+# Note to the USer
+# Hi there I do hope you like the colours I have chosen but if not you are welcome to change them!
+
+# ===================================================================
+# Terminal filters
+# ===================================================================
+# Below are TERM or COLORTERM entries, which can be glob patterns, which
+# restrict following config to systems with matching environment variables.
+COLORTERM ?*
+TERM Eterm
+TERM ansi
+TERM *color*
+TERM con[0-9]*x[0-9]*
+TERM cons25
+TERM console
+TERM cygwin
+TERM *direct*
+TERM dtterm
+TERM gnome
+TERM hurd
+TERM jfbterm
+TERM konsole
+TERM kterm
+TERM linux
+TERM linux-c
+TERM mlterm
+TERM putty
+TERM rxvt*
+TERM screen*
+TERM st
+TERM terminator
+TERM tmux*
+TERM vt100
+TERM xterm*
+
+
+
+# Basic file attributes / misc colours
+DIR 01;38;5;61 #Directory
+EXEC 01;32
+MISSING 00 
+
+#Text files / Libreoffice files  
+.txt 1;38;5;244
+.odt 1;38;5;31
+.ods 1;38;5;34
+
+# Programming colours (Variaty of colours)
+.git 1;38;5;166
+.toml 1;38;5;166
+.conf 1;38;5;82
+.ini 1;38;5;83
+.bk 4;38;5;167
+.html 1;38;5;166
+.css 1;38;5;195
+.js 1;38;5;11
+.py 1;38;5;31
+.c 1;38;5;67
+.sh 01;32
+
+# compressed files (Maroon)
+.zip 01;31
+.jar 01;31
+.tar 01;31
+.deb 01;31
+.apk 01;31
+.tz 01;31
+.gz 01;31
+
+#Video (Red)
+.mp4 1;38;5;160 
+.webm 1;38;5;160
+.mkv 0;38;5;160
+.mov 0;38;5;160
+
+# Images (Dark blue)
+.jpeg 0;38;5;27
+.webp 1;38;5;27
+.jpg 0;38;5;27
+.png 0;38;5;27
+.gif 0;38;5;27
+
+# Audio (Red)
+.mp3 1;38;5;124
+.wav 1;38;5;124
+.ogg 1;38;5;124
+
+# Winodws related (sky blue underlined)
+.cmd 4;38;5;117 
+.exe 4;38;5;117
+.com 4;38;5;117
+.btm 4;38;5;117
+.bat 4;38;5;117
+
+#Misc files
+.desktop 2;38;5;85

@@ -1,0 +1,23 @@
+[env]
+TERM = "xterm-256color"
+
+[scrolling]
+history = 5000
+
+[window.padding]
+x = 6
+y = 6
+
+[font]
+size = 9.0
+
+[colors.primary]
+foreground = '#d8dee9'
+
+[colors.cursor]
+cursor = '#7e2dc2'
+text = '#dd8eff'
+
+[colors.selection]
+background = '#7e30a8'
+text = '#dd8eff'
