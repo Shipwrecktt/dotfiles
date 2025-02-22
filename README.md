@@ -15,8 +15,16 @@ In my [xinitrc](files/config/X11/xinitrc) I have it set to the UK keyboard layou
 To install my dotfiles, follow these simple steps:
 
 1. **Clone the Gitlab Repository:**
+
+From Gitlab
     ```sh
-    git clone git@gitlab.com:Shipwreckt/dotfiles.git
+    git clone https://gitlab.com/dotfiles
+    cd dotfiles
+    ```
+
+From my website
+    ```sh
+    git clone git://git.shipwreckt.co.uk/dotfiles.git
     cd dotfiles
     ```
 
