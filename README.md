@@ -48,13 +48,10 @@ This repository includes configurations for the following programs:
 - [Dmenu](https://tools.suckless.org/dmenu/) - App Launcher by Suckless
 - [Slstatus](https://tools.suckless.org/slstatus/) - Status Bar for DWM
 - [St](https://st.suckless.org/) - Terminal emulator by suckless
--- Control k to scroll up
--- Control j to scroll down
--- Control l to zoom out
--- Control h to zoom in
 - [Fish shell](https://fishshell.com/) - Terminal shell
 - [Starship](https://starship.rs/) - Terminal bling
 - [Dunst](https://github.com/dunst-project/dunst) - Notifications
+- [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp) - Kool TUI music player 
 
 ## Programs No Longer Used
 These are programs and tools that I no longer use:

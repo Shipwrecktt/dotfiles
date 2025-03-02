@@ -64,12 +64,14 @@ static const char *passwdcmd[]  = { "keepassxc", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *audioup[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *audiodown[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *ncmpcppcmd[] = { "st", "-e", "ncmpcpp", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_F3,     spawn,          {.v = audioup } },
 	{ MODKEY,                       XK_F2,     spawn,          {.v = audiodown } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = audiocmd } },
+	{ MODKEY,                       XK_m,      spawn,          {.v = ncmpcppcmd } },
 
 	{ 0,                            XK_Print,  spawn,          {.v = printcmd } },
 	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = passwdcmd } },
