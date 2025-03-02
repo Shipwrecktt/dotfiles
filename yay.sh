@@ -13,7 +13,7 @@ install_yay() {
 }
 
 install_aur_packages() {
-    $AUR wd719x-firmware upd72020x-fw yt-dlp-drop-in librewolf-bin nuclear-player-bin
+    $AUR wd719x-firmware upd72020x-fw yt-dlp-drop-in librewolf-bin
     echo "===================="
     echo "AUR packages setup"
     echo "===================="

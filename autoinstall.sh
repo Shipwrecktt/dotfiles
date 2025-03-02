@@ -32,6 +32,7 @@ setup_ly() {
     echo "=================="
 }
 
+
 setup_home_directory() {
     mkdir -p ~/Documents/passwords
     mkdir -p ~/Documents/projects
@@ -75,9 +76,6 @@ copy_config_files() {
     rm -rf ~/.config/ranger/*
     sudo cp -r ~/dotfiles/files/ranger/* ~/.config/ranger/
 
-    # Enable mpd for music junk
-    sudo systemctl start mpd
-
     echo "=================="
     echo "Configs loaded"
     echo "=================="
@@ -98,6 +96,12 @@ bashrc_additions(){
 
 fish(){
   echo -e '\n# Start fish shell \nif [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} && ${SHLVL} == 1 ]]; then\n    shopt -q login_shell && LOGIN_OPTION="--login" || LOGIN_OPTION=""\n    exec fish $LOGIN_OPTION\nfi' >> ~/.bashrc
+}
+
+setup_music() {
+  echo -e "\n# MPD daemon start (if no other user instance exists)\n[ ! -s ~/.config/mpd/pid ] && mpd" >> .bash_profile
+  systemctl --user start mpd.service
+
 }
 
 Blocked_Websites() {
@@ -122,6 +126,7 @@ main() {
     fonts
     bashrc_additions
     fish
+    setup_music
     Security
     echo "=================================="
     echo "Done installing, you may reboot."
