@@ -68,21 +68,21 @@ static const char *ncmpcppcmd[] = { "st", "-e", "ncmpcpp", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ MODKEY,                 			XK_Insert, spawn,          SHCMD("xdotool type $(grep -v '^#' ~/.local/share/larbs/snippets | dmenu -i -l 50 | cut -d' ' -f1)") },
 	{ MODKEY,                       XK_F3,     spawn,          {.v = audioup } },
 	{ MODKEY,                       XK_F2,     spawn,          {.v = audiodown } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = audiocmd } },
 	{ MODKEY,                       XK_m,      spawn,          {.v = ncmpcppcmd } },
-
 	{ 0,                            XK_Print,  spawn,          {.v = printcmd } },
 	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = passwdcmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_f,      spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = audiocmd } },
+
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },

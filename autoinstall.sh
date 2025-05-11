@@ -7,7 +7,7 @@ UPDATE='sudo pacman -Syu --noconfirm'
 
 install_packages() {
     $UPDATE
-    $INSTALL mpv feh redshift linux-firmware-qlogic pavucontrol picom nitrogen thunar gvfs lxappearance alsa-utils neovim yubico-pam starship fish man-db qt5ct breeze breeze-gtk redshift htop lsb-release libreoffice-fresh ly ufw scrot keepassxc ranger unzip gcr webkit2gtk gd dosfstools xorg-xkill openresolv wireguard-tools libdvdcss libdvdread dunst cryptsetup wget mpc mpd ncmpcpp
+    $INSTALL mpv feh redshift linux-firmware-qlogic pavucontrol picom nitrogen thunar gvfs lxappearance alsa-utils neovim yubico-pam starship fish man-db qt5ct breeze breeze-gtk redshift htop lsb-release libreoffice-fresh ly ufw scrot keepassxc ranger unzip gcr webkit2gtk gd dosfstools xorg-xkill openresolv wireguard-tools libdvdcss libdvdread dunst cryptsetup wget mpc mpd ncmpcpp xclip xdotool
     echo "=============================="
     echo "Programs are done installing"
     echo "============================="
@@ -34,16 +34,18 @@ setup_ly() {
 
 
 setup_home_directory() {
-    mkdir -p ~/Documents/passwords
-    mkdir -p ~/Documents/projects
-    mkdir -p ~/Documents/notes
-    mkdir -p ~/Documents/books
+    mkdir -p ~/Documents/Passwords
+    mkdir -p ~/Documents/Study
+    mkdir -p ~/Documents/Projects
+    mkdir -p ~/Documents/Notes
+    mkdir -p ~/Documents/Books
     mkdir -p ~/Downloads/
     mkdir -p ~/Backups/
     mkdir -p ~/Programming/
-    mkdir -p ~/Videos/personal
+    mkdir -p ~/Videos/Personal
     mkdir -p ~/Music/
     mkdir -p ~/Games/
+    touch ~/.bookmarks
     echo "=================="
     echo "Directories setup"
     echo "=================="

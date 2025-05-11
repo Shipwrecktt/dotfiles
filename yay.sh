@@ -2,8 +2,8 @@ AUR='yay -S --noconfirm'
 
 install_yay() {
     sudo pacman -S --needed --noconfirm git base-devel
-    git clone https://aur.archlinux.org/paru.git
-    cd paru 
+    git clone https://aur.archlinux.org/yay.git
+    cd yay 
     makepkg -si --noconfirm
 
     if ! command -v yay &> /dev/null; then
