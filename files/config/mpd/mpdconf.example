@@ -1,6 +1,8 @@
 # An example configuration file for MPD.
 # Read the user manual for documentation: http://www.musicpd.org/doc/user/
 
+# Note from Shipwreckt:
+# Left this here just in case.
 
 # Files and directories #######################################################
 #
