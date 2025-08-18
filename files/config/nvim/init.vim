@@ -44,3 +44,10 @@ augroup END
 " Use system clipboard
 set clipboard=unnamedplus
 
+call plug#begin('~/.config/nvim/plug')
+
+" List your plugins here
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+Plug 'jceb/vim-orgmode'
+
+call plug#end()

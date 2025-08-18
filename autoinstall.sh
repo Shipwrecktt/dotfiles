@@ -7,7 +7,7 @@ UPDATE='sudo pacman -Syu --noconfirm'
 
 install_packages() {
     $UPDATE
-    $INSTALL mpv feh redshift linux-firmware-qlogic pavucontrol picom nitrogen thunar gvfs lxappearance alsa-utils neovim yubico-pam starship fish man-db qt5ct breeze breeze-gtk redshift htop lsb-release libreoffice-fresh ly ufw scrot keepassxc ranger unzip gcr webkit2gtk gd dosfstools xorg-xkill openresolv wireguard-tools libdvdcss libdvdread dunst cryptsetup wget mpc mpd ncmpcpp xclip xdotool
+    $INSTALL mpv feh redshift linux-firmware-qlogic pavucontrol picom nitrogen thunar gvfs lxappearance alsa-utils neovim yubico-pam starship fish man-db qt5ct breeze breeze-gtk redshift htop lsb-release libreoffice-fresh ly ufw scrot keepassxc ranger unzip gcr webkit2gtk gd dosfstools xorg-xkill openresolv wireguard-tools libdvdcss libdvdread dunst cryptsetup wget ncmpcpp xclip xdotool
     echo "=============================="
     echo "Programs are done installing"
     echo "============================="
@@ -78,6 +78,10 @@ copy_config_files() {
     rm -rf ~/.config/ranger/*
     sudo cp -r ~/dotfiles/files/ranger/* ~/.config/ranger/
 
+    # Install files for plug manager for NVIM
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
     echo "=================="
     echo "Configs loaded"
     echo "=================="
@@ -98,12 +102,6 @@ bashrc_additions(){
 
 fish(){
   echo -e '\n# Start fish shell \nif [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} && ${SHLVL} == 1 ]]; then\n    shopt -q login_shell && LOGIN_OPTION="--login" || LOGIN_OPTION=""\n    exec fish $LOGIN_OPTION\nfi' >> ~/.bashrc
-}
-
-setup_music() {
-  echo -e "\n# MPD daemon start (if no other user instance exists)\n[ ! -s ~/.config/mpd/pid ] && mpd" >> .bash_profile
-  systemctl --user start mpd.service
-
 }
 
 Blocked_Websites() {
