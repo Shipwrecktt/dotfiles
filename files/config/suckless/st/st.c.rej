@@ -1,0 +1,27 @@
+--- st.c
++++ st.c
+@@ -1264,9 +1313,24 @@ tsetchar(Rune u, const Glyph *attr, int x, int y)
+ 		term.line[y][x-1].mode &= ~ATTR_WIDE;
+ 	}
+ 
++	if (u == ' ' && term.line[y][x].mode & ATTR_IMAGE &&
++	    tgetisclassicplaceholder(&term.line[y][x])) {
++		// This is a workaround: don't overwrite classic placement
++		// placeholders with space symbols (unlike Unicode placeholders
++		// which must be overwritten by anything).
++		term.line[y][x].bg = attr->bg;
++		term.dirty[y] = 1;
++		return;
++	}
++
+ 	term.dirty[y] = 1;
+ 	term.line[y][x] = *attr;
+ 	term.line[y][x].u = u;
++
++	if (u == IMAGE_PLACEHOLDER_CHAR || u == IMAGE_PLACEHOLDER_CHAR_OLD) {
++		term.line[y][x].u = 0;
++		term.line[y][x].mode |= ATTR_IMAGE;
++	}
+ }
+ 
+ void

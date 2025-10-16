@@ -7,7 +7,7 @@ UPDATE='sudo pacman -Syu --noconfirm'
 
 install_packages() {
     $UPDATE
-    $INSTALL mpv feh redshift linux-firmware-qlogic pavucontrol picom nitrogen thunar gvfs lxappearance alsa-utils neovim yubico-pam starship fish man-db qt5ct breeze breeze-gtk redshift htop lsb-release libreoffice-fresh ly ufw scrot keepassxc ranger unzip gcr webkit2gtk gd dosfstools xorg-xkill openresolv wireguard-tools libdvdcss libdvdread dunst cryptsetup wget ncmpcpp xclip xdotool
+    $INSTALL mpv feh redshift linux-firmware-qlogic pavucontrol picom nitrogen thunar gvfs lxappearance alsa-utils neovim yubico-pam starship fish man-db qt5ct breeze breeze-gtk redshift htop lsb-release libreoffice-fresh ly ufw scrot keepassxc ranger unzip gcr webkit2gtk gd dosfstools xorg-xkill openresolv wireguard-tools libdvdcss libdvdread dunst cryptsetup wget ncmpcpp xclip xdotool xterm xorg-xclock xorg-twm okular thunderbird
     echo "=============================="
     echo "Programs are done installing"
     echo "============================="
@@ -45,6 +45,7 @@ setup_home_directory() {
     mkdir -p ~/Videos/Personal
     mkdir -p ~/Music/
     mkdir -p ~/Games/
+    mkdir -p ~/.config/
     touch ~/.bookmarks
     echo "=================="
     echo "Directories setup"
@@ -53,14 +54,14 @@ setup_home_directory() {
 
 copy_config_files() {
     sudo mkdir -p /usr/share/xsessions
-    sudo cp ~/dotfiles/files/dwm.desktop /usr/share/xsessions/
+    sudo cp ~/Dotfiles/files/dwm.desktop /usr/share/xsessions/
 
-    sudo cp -r ~/dotfiles/files/pacman.conf /etc/pacman.conf
+    sudo cp -r ~/Dotfiles/files/pacman.conf /etc/pacman.conf
     
-    sudo cp -r ~/dotfiles/files/config/* ~/.config/
-    sudo cp ~/dotfiles/files/Ly/config.ini /etc/ly/config.ini
+    sudo cp -r ~/Dotfiles/files/config/* ~/.config/
+    sudo cp ~/Dotfiles/files/Ly/config.ini /etc/ly/config.ini
 
-    cd ~/dotfiles/files/config/suckless/dwm/
+    cd ~/Dotfiles/files/config/suckless/dwm/
     sudo make clean install
     cd ../slstatus
     sudo make clean install
@@ -76,7 +77,7 @@ copy_config_files() {
     # Ranger config
     ranger --copy-config=all
     rm -rf ~/.config/ranger/*
-    sudo cp -r ~/dotfiles/files/ranger/* ~/.config/ranger/
+    sudo cp -r ~/Dotfiles/files/ranger/* ~/.config/ranger/
 
     # Install files for plug manager for NVIM
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -88,7 +89,7 @@ copy_config_files() {
 }
 
 fonts(){
-  cp -rf ~/dotfiles/files/fonts ~/.fonts
+  cp -rf ~/Dotfiles/files/fonts ~/.fonts
 }
 
 bashrc_additions(){
@@ -137,5 +138,5 @@ main() {
 #This runs the script and gives the current user perms
 main
 sudo chown -R $(whoami):$(whoami) /home/$(whoami)
-sh ~/dotfiles/yay.sh
+sh ~/Dotfiles/yay.sh
 
