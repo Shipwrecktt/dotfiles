@@ -51,11 +51,12 @@ This repository includes configurations for the following programs:
 - [Fish shell](https://fishshell.com/) - Terminal shell
 - [Starship](https://starship.rs/) - Terminal bling
 - [Dunst](https://github.com/dunst-project/dunst) - Notifications
-- [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp) - Kool TUI music player 
+- [doas](https://codeberg.org/thejessesmith/doas/) - Alternative to sudo 
 
 ## Programs No Longer Used
 These are programs and tools that I no longer use:
 
+- [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp) - Kool TUI music player 
 - [Alacritty](https://github.com/alacritty/alacritty) - Terminal
 - [Polybar](https://github.com/polybar/polybar) - Simple Status Bar
 - [Synth Shell](https://github.com/andresgongora/synth-shell) - Terminal Customization and Git Helper

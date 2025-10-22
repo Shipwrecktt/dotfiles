@@ -48,16 +48,25 @@ call plug#begin('~/.config/nvim/plug')
 
 " List your plugins here
 Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
-Plug 'jceb/vim-orgmode'
+Plug 'vimwiki/vimwiki'
+
 
 call plug#end()
 
+" Vimwiki settings
+let g:vimwiki_list = [{
+      \ 'path': '~/Documents/Notes/',
+      \ 'syntax': 'markdown',
+      \ 'ext': '.md'
+      \ }]
+
+
+" Goyo settings
 function! s:goyo_enter()
   set noshowmode
   set noshowcmd
   set scrolloff=999
   set linebreak
-  " ...
 endfunction
 
 function! s:goyo_leave()

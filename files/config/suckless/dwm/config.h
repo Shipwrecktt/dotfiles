@@ -57,25 +57,29 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *browsercmd[]  = { "librewolf", NULL };
-static const char *audiocmd[]  = { "pavucontrol", NULL };
 static const char *printcmd[]  = { "scrot", "-s", NULL };
-static const char *passwdcmd[]  = { "keepassxc", NULL };
-static const char *termcmd[]  = { "st", NULL };
+
+static const char *audiocmd[]  = { "pavucontrol", NULL };
 static const char *audioup[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *audiodown[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
-static const char *ncmpcppcmd[] = { "st", "-e", "ncmpcpp", NULL };
+
+static const char *youtubecmd[]  = { "gtk-pipe-viewer", NULL };
+static const char *browsercmd[]  = { "librewolf", NULL };
+static const char *gimpcmd[]  = { "gimp", NULL };
+static const char *passwdcmd[]  = { "keepassxc", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *emailcmd[] = { "thunderbird", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
   { MODKEY|ShiftMask,             XK_Insert, spawn,          SHCMD("sh ~/.Scripts/bookmark.sh") },
 	{ MODKEY,                 			XK_Insert, spawn,          SHCMD("xdotool type $(grep -v '^#' ~/.bookmarks | dmenu -i -l 50 | cut -d' ' -f1)") },
+	{ MODKEY,                       XK_y,      spawn,          {.v = youtubecmd } },
+	{ MODKEY,                       XK_g,      spawn,          {.v = gimpcmd } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = emailcmd } },
 	{ MODKEY,                       XK_F3,     spawn,          {.v = audioup } },
 	{ MODKEY,                       XK_F2,     spawn,          {.v = audiodown } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = audiocmd } },
-	{ MODKEY,                       XK_m,      spawn,          {.v = ncmpcppcmd } },
 	{ 0,                            XK_Print,  spawn,          {.v = printcmd } },
 	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = passwdcmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },

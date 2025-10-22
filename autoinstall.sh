@@ -2,8 +2,10 @@
 
 set -e
 
+DotfilesDir=$(pwd)
 INSTALL='sudo pacman -S --noconfirm'
 UPDATE='sudo pacman -Syu --noconfirm'
+SucklessDir="$DotfilesDir/files/config/suckless"
 
 install_packages() {
     $UPDATE
@@ -54,30 +56,27 @@ setup_home_directory() {
 
 copy_config_files() {
     sudo mkdir -p /usr/share/xsessions
-    sudo cp ~/Dotfiles/files/dwm.desktop /usr/share/xsessions/
+    sudo cp "$DotfilesDir/files/dwm.desktop" /usr/share/xsessions/
 
-    sudo cp -r ~/Dotfiles/files/pacman.conf /etc/pacman.conf
+    sudo cp -r "$DotfilesDir/files/pacman.conf" /etc/pacman.conf
     
-    sudo cp -r ~/Dotfiles/files/config/* ~/.config/
-    sudo cp ~/Dotfiles/files/Ly/config.ini /etc/ly/config.ini
+    sudo cp -r "$DotfilesDir/files/config/*" ~/.config/
+    sudo cp "$DotfilesDir/files/Ly/config.ini" /etc/ly/config.ini
 
-    cd ~/Dotfiles/files/config/suckless/dwm/
-    sudo make clean install
-    cd ../slstatus
-    sudo make clean install
-    cd ../dmenu
-    sudo make clean install
-    cd ../surf
-    sudo make clean install
-    cd ../st
-    sudo make clean install
-    cd ../scroll
-    sudo make clean install
-    
+    # Suckless software
+    for dir in dwm slstatus dmenu surf st scroll; do
+      if cd "$SucklessDir/$dir"; then
+        echo "Building $dir..."
+        sudo make clean install || echo "Build failed in $dir"
+      else
+        echo " Directory not found: $SucklessDir/$dir"
+      fi
+    done
+
     # Ranger config
     ranger --copy-config=all
     rm -rf ~/.config/ranger/*
-    sudo cp -r ~/Dotfiles/files/ranger/* ~/.config/ranger/
+    sudo cp -r "$DotfilesDir/files/ranger/*" ~/.config/ranger/
 
     # Install files for plug manager for NVIM
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -89,7 +88,7 @@ copy_config_files() {
 }
 
 fonts(){
-  cp -rf ~/Dotfiles/files/fonts ~/.fonts
+  cp -rf "$DotfilesDir/files/fonts" ~/.fonts
 }
 
 bashrc_additions(){
@@ -98,7 +97,6 @@ bashrc_additions(){
   echo 'alias P="cd ~/Programming"' >> ~/.bashrc
   echo 'alias C="cd ~/.config"' >> ~/.bashrc
   echo 'alias vim='nvim'' >> ~/.bashrc
-  echo "printf '\033[?1h\033= >/dev/tty'" >> ~/.bashrc
 }
 
 fish(){
@@ -118,6 +116,22 @@ Security() {
 sudo sed -i '6 i auth optional pam_faildelay.so delay=4000000' /etc/pam.d/system-login
 }
 
+Doas() {
+  $INSTALL opendoas
+  echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > /etc/doas.conf 
+  doas pacman -Rdd sudo
+  doas ln -s $(which doas) /usr/bin/sudo
+  doas chown -c root:root /etc/doas.conf
+  doas chmod -c 0400 /etc/doas.conf
+
+  # VIDOAS
+  # Credit to https://www.cjjackson.dev/posts/replacing-sudo-with-doas-on-arch-linux/
+  doas cp "$DotfilesDir/files/doas/vidoas" /root/script/vidoas
+  doas cp "$DotfilesDir/files/doas/vidoas1" /usr/local/bin/vidoas
+
+  doas chmod 700 /root/script/vidoas
+  doas chmod 755 /usr/local/bin/vidoas
+}
 main() {
     install_packages
     setup_ufw

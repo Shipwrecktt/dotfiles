@@ -12,17 +12,13 @@
 #define DEFAULT(a, b)		(a) = (a) ? (a) : (b)
 #define LIMIT(x, a, b)		(x) = (x) < (a) ? (a) : (x) > (b) ? (b) : (x)
 #define ATTRCMP(a, b)		((a).mode != (b).mode || (a).fg != (b).fg || \
-				(a).bg != (b).bg || (a).decor != (b).decor)
+				(a).bg != (b).bg)
 #define TIMEDIFF(t1, t2)	((t1.tv_sec-t2.tv_sec)*1000 + \
 				(t1.tv_nsec-t2.tv_nsec)/1E6)
 #define MODBIT(x, set, bit)	((set) ? ((x) |= (bit)) : ((x) &= ~(bit)))
 
 #define TRUECOLOR(r,g,b)	(1 << 24 | (r) << 16 | (g) << 8 | (b))
 #define IS_TRUECOL(x)		(1 << 24 & (x))
-
-// This decor color indicates that the fg color should be used. Note that it's
-// not a 24-bit color because the 25-th bit is not set.
-#define DECOR_DEFAULT_COLOR	0x0ffffff
 
 enum glyph_attribute {
 	ATTR_NULL       = 0,
@@ -39,7 +35,6 @@ enum glyph_attribute {
 	ATTR_WDUMMY     = 1 << 10,
 	ATTR_BOXDRAW    = 1 << 11,
 	ATTR_BOLD_FAINT = ATTR_BOLD | ATTR_FAINT,
-	ATTR_IMAGE      = 1 << 14,
 };
 
 enum selection_mode {
@@ -47,11 +42,6 @@ enum selection_mode {
 	SEL_EMPTY = 1,
 	SEL_READY = 2
 };
-
-static inline void tsetimgrow(Glyph *g, uint32_t row) {
-    g->u.img.row = row;
-}
-
 
 enum selection_type {
 	SEL_REGULAR = 1,
@@ -61,14 +51,6 @@ enum selection_type {
 enum selection_snap {
 	SNAP_WORD = 1,
 	SNAP_LINE = 2
-};
-
-enum underline_style {
-	UNDERLINE_STRAIGHT = 1,
-	UNDERLINE_DOUBLE = 2,
-	UNDERLINE_CURLY = 3,
-	UNDERLINE_DOTTED = 4,
-	UNDERLINE_DASHED = 5,
 };
 
 typedef unsigned char uchar;
@@ -84,7 +66,6 @@ typedef struct {
 	ushort mode;      /* attribute flags */
 	uint32_t fg;      /* foreground  */
 	uint32_t bg;      /* background  */
-	uint32_t decor;   /* decoration (like underline) */
 } Glyph;
 
 typedef Glyph *Line;
@@ -126,8 +107,6 @@ void selstart(int, int, int);
 void selextend(int, int, int, int);
 int selected(int, int);
 char *getsel(void);
-
-Glyph getglyphat(int, int);
 
 size_t utf8encode(Rune, char *);
 
