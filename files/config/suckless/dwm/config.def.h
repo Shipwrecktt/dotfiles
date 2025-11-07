@@ -2,7 +2,6 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 4;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -29,14 +28,15 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Librewolf",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const int refreshrate = 120;  /* refresh rate (per second) for client move/resize */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -46,7 +46,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -58,13 +58,38 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "rofi", "-show", "drun", "-display-drun", "Applications", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *printcmd[]  = { "scrot", "-s", NULL };
+
+static const char *audiocmd[]  = { "pavucontrol", NULL };
+static const char *audioup[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *audiodown[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+
+static const char *youtubecmd[]  = { "gtk-pipe-viewer", NULL };
+static const char *browsercmd[]  = { "librewolf", NULL };
+static const char *gimpcmd[]  = { "gimp", NULL };
+static const char *passwdcmd[]  = { "keepassxc", NULL };
+static const char *termcmd[]  = { "st", NULL };
+static const char *emailcmd[] = { "thunderbird", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+ 	{ MODKEY,                 			XK_Insert, spawn,          SHCMD("xdotool type $(grep -v '^#' ~/.bookmarks | dmenu -i -l 50 | cut -d' ' -f1)") },
+	{ MODKEY,                       XK_y,      spawn,          {.v = youtubecmd } },
+	{ MODKEY,                       XK_g,      spawn,          {.v = gimpcmd } },
+	{ MODKEY,                       XK_t,      spawn,          {.v = emailcmd } },
+	{ MODKEY,                       XK_F3,     spawn,          {.v = audioup } },
+	{ MODKEY,                       XK_F2,     spawn,          {.v = audiodown } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = audiocmd } },
+	{ 0,                            XK_Print,  spawn,          {.v = printcmd } },
+	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = passwdcmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_f,      spawn,          {.v = browsercmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = audiocmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -72,9 +97,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_w,      killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -95,7 +120,9 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask|ControlMask, XK_q,      spawn,           SHCMD("shutdown now") },
 };
 
 /* button definitions */

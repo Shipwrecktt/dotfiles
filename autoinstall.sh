@@ -113,7 +113,9 @@ Blocked_Websites() {
 }
 
 Security() {
-sudo sed -i '6 i auth optional pam_faildelay.so delay=4000000' /etc/pam.d/system-login
+  sudo sed -i '6 i auth optional pam_faildelay.so delay=4000000' /etc/pam.d/system-login
+  $INSTALL clamav 
+  sudo freshclam
 }
 
 Doas() {
@@ -141,8 +143,9 @@ main() {
     fonts
     bashrc_additions
     fish
-    setup_music
+    #Blocked_Website
     Security
+    #Doas
     echo "=================================="
     echo "Done installing, you may reboot."
     echo "Thank you for installing!"
