@@ -38,7 +38,6 @@ From my website
 ## Included Configurations
 This repository includes configurations for the following programs:
 
-- [LY](https://github.com/fairyglade/ly) - Display Manager
 - [Dircolors](https://www.gnu.org/software/coreutils/manual/html_node/dircolors-invocation.html) - Adds color in the terminal
 - [Neovim](https://neovim.io/) - My IDE
 - [Picom](https://github.com/yshui/picom) - Compositor for X, forked from Compton
@@ -47,15 +46,17 @@ This repository includes configurations for the following programs:
 - [DWM](https://dwm.suckless.org/) - Tiling Window Manager
 - [Dmenu](https://tools.suckless.org/dmenu/) - App Launcher by Suckless
 - [Slstatus](https://tools.suckless.org/slstatus/) - Status Bar for DWM
-- [St](https://st.suckless.org/) - Terminal emulator by suckless
-- [Fish shell](https://fishshell.com/) - Terminal shell
 - [Starship](https://starship.rs/) - Terminal bling
 - [Dunst](https://github.com/dunst-project/dunst) - Notifications
 - [doas](https://codeberg.org/thejessesmith/doas/) - Alternative to sudo 
+- [Alacritty](https://github.com/alacritty/alacritty) - Terminal
 
 ## Programs No Longer Used
 These are programs and tools that I no longer use:
 
+- [LY](https://github.com/fairyglade/ly) - Display Manager
+- [St](https://st.suckless.org/) - Terminal emulator by suckless
+- [Fish shell](https://fishshell.com/) - Terminal shell
 - [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp) - Kool TUI music player 
 - [Alacritty](https://github.com/alacritty/alacritty) - Terminal
 - [Polybar](https://github.com/polybar/polybar) - Simple Status Bar
@@ -71,6 +72,6 @@ Feel free to submit pull requests or open issues if needed, and I'll review them
 
 
 ## License
-As with nearly all of my repositories, this one is licensed under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.en.html). I'm including this notice to ensure that the license is clearly stated, in case the license file is not present in the repository.
+As with nearly all of my repositories, this one is licensed under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.en.html). I'm including this notice to ensure that the license is clearly stated, in case the license file is not present in the repository. Furthermore, software installed by these files come with their own licenses, please respect those as well.
 
 Please refer to the [LICENSE](LICENSE) file for detailed information.

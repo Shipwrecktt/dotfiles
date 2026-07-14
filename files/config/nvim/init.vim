@@ -5,7 +5,7 @@ set fileformat=unix
 set encoding=UTF-8
 
 " Highlights the current line
-highlight CursorLine guibg=#5f0087
+highlight CursorLine guibg=#4A3520
 set cursorline
 
 " Enable search highlighting

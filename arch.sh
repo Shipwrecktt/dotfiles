@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Config last updated in early 2025, run at your own risk
+
 set -e
 
 DotfilesDir=$(pwd)

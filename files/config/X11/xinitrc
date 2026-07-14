@@ -1,15 +1,19 @@
-#!/bin/bash
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-nitrogen --restore &
-setxkbmap uk
+#!/bin/sh
+
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
+
+export XDG_CURRENT_DESKTOP=dwm
+
+dbus-update-activation-environment --systemd \
+    DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
+
+systemctl --user import-environment \
+    DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
+
 dunst &
 picom &
-redshift &
 slstatus &
-setxkbmap uk
-
-# If you have screen issues like me with my laptop
-#echo 5 > /sys/class/backlight/acpi_video0/brightness
-
-exec dwm 
-
+feh --bg-fill ~/Pictures/wallpapers/gnu/hurd00.png
+redshift -O 4500 &
+/home/$USER/.local/bin/kbdlight
+exec dwm

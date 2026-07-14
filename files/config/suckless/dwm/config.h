@@ -11,11 +11,13 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#3f1e90";
+static const char col_black[]       = "#111111";
+static const char col_orange[]      = "#FF8F00";
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+  [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_black, col_orange,  col_orange  },
 };
 
 /* tagging */
@@ -57,24 +59,24 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_orange, "-sf", col_black, NULL };
 static const char *printcmd[]  = { "scrot", "-s", NULL };
 
 static const char *audiocmd[]  = { "pavucontrol", NULL };
 static const char *audioup[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *audiodown[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 
-static const char *youtubecmd[]  = { "gtk-pipe-viewer", NULL };
 static const char *browsercmd[]  = { "librewolf", NULL };
 static const char *gimpcmd[]  = { "gimp", NULL };
 static const char *passwdcmd[]  = { "keepassxc", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 static const char *emailcmd[] = { "thunderbird", NULL };
+static const char *lockcmd[] = { "slock", NULL };
+
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
  	{ MODKEY,                 			XK_Insert, spawn,          SHCMD("xdotool type $(grep -v '^#' ~/.bookmarks | dmenu -i -l 50 | cut -d' ' -f1)") },
-	{ MODKEY,                       XK_y,      spawn,          {.v = youtubecmd } },
 	{ MODKEY,                       XK_g,      spawn,          {.v = gimpcmd } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = emailcmd } },
 	{ MODKEY,                       XK_F3,     spawn,          {.v = audioup } },
@@ -82,12 +84,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = audiocmd } },
 	{ 0,                            XK_Print,  spawn,          {.v = printcmd } },
 	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = passwdcmd } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_f,      spawn,          {.v = browsercmd } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = audiocmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+  { MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("slock") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },

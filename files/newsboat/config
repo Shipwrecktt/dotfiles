@@ -1,0 +1,30 @@
+# unbind keys
+unbind-key ENTER
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+unbind-key q
+
+# vi binds 
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key q quit
+
+# Macros
+## O to open browser
+browser "/usr/bin/librewolf %u"
+
+# Colours
+color background         default   default
+color listnormal         default   default
+color listnormal_unread  default   default
+color listfocus          black     cyan
+color listfocus_unread   black     cyan
+color info               default   black
+color article            default   default
+
+## Currently selected item
+color listfocus         black     color208
+color listfocus_unread  black     color208
