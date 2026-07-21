@@ -10,7 +10,7 @@ install(){
   sudo apt update
   sudo apt upgrade -y
   ## Installs packages
-  sudo apt install -y picom ufw mpv redshift htop lxappearance wget libxrandr-dev grub-customizer taskwarrior thunderbird irssi wireguard dbus dbus-user-session xdotool dunst libnotify-bin dbus-x11 newsboat
+  sudo apt install -y picom ufw mpv redshift htop lxappearance wget libxrandr-dev grub-customizer taskwarrior thunderbird irssi wireguard dbus dbus-user-session xdotool dunst libnotify-bin dbus-x11 newsboat zsh starship neovim libx11-dev libxft-dev libxinerama-dev
 
   ## Gaming packages
   sudo apt install
@@ -34,7 +34,7 @@ guix(){
 
 secret_service(){
   # May replace with pass in the future
-  libsecret-1-0 libsecret-1-dev seahorse gnome-keyring
+  sudo apt install libsecret-1-0 libsecret-1-dev seahorse gnome-keyring
 }
 
 yubikey(){
@@ -83,6 +83,13 @@ config(){
   ## Downloads Vimplug
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+  # X11
+  cp ~/.config/X11/xinitrc ~/.xinitrc
+
+  # Fonts
+  mkdir ~/.fonts
+  cp -rf $DotfilesDir/fonts ~/.fonts/
   }
 
 # ufw
@@ -129,14 +136,23 @@ home_directory() {
 }
 
 
+zsh(){
+  # https://zsh.sourceforge.io/Doc/Release/Introduction.html#Author
+  # Copies over the config file, this also acts as a backup just in case.
+  cp ~/.config/zsh/zshrc ~/.zshrc
+
+  # Plugin I use - similar to fish 
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/zsh-autosuggestions
+}
 main(){
+  home_directory
   install
   librewolf
-  home_directory
   ufw
   config
   secret_service
   perms
+  zsh
 }
 
 

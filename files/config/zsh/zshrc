@@ -1,0 +1,21 @@
+# Plugins
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Alias
+## Directories
+alias W="cd ~/Documents/Programming/website/"
+alias P="cd ~/Documents/Programming/"
+alias D="cd ~/Documents/"
+alias C="cd ~/.config"
+alias Cs="cd ~/.config/suckless"
+
+# Editing
+alias vi="nvim"
+alias vim"nvim"
+alias vnim="nvim"
+
+# Dir colours
+alias ls='ls --color=auto'
+
+# Starship
+eval "$(starship init zsh)"

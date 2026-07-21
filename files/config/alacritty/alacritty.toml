@@ -15,7 +15,7 @@ size = 9.0
 foreground = '#d8dee9'
 
 [colors.cursor]
-cursor = '#7e2dc2'
+cursor = '#FF8F00'
 text = '#dd8eff'
 
 [colors.selection]
