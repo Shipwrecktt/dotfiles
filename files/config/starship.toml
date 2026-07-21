@@ -1,17 +1,19 @@
+add_newline = false
+
 [username]
-style_user = "purple"
+style_user = "Orange"
 show_always = true
-format = '[$user](bold #5B26D8)'
+format = '[$user](bold #FF8F00)'
 
 [hostname]
 ssh_only = false
-format = '[@](#7B51E0)[$hostname ](bold #A3D826)'
+format = '[@](#FF8F00)[$hostname > ](bold #FF8F00)'
 disabled = false
 
 [directory]
 truncation_length = 3
 truncation_symbol = "…/"
-style = "bold #5f5faf"
+style = "bold FF8F00"
 disabled = false
 read_only = " 󰌾"
 
